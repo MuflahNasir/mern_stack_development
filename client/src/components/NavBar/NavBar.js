@@ -17,12 +17,14 @@ const NavBar = () => {
     return(
         <Navbar color="primary" light expand="sm" className="mb-5">
             <Container>
-                <NavbarBrand href="/" className="text-white">MERN Shopping List</NavbarBrand>
+                <NavbarBrand href="/" className="text-white"><span role="img" aria-label="emojie">&#10024;</span>&nbsp;MERN Shopping List</NavbarBrand>
                 <NavbarToggler onClick={toggle}/>
                 <Collapse isOpen={isOpen} navbar>
                 <Nav className="ml-auto" navbar>
                     <NavItem>
-                    <NavLink className="text-white" href="https://github.com/MuflahNasir/mern_stack_development">GitHub</NavLink>
+                    <NavLink className="text-white" href="https://github.com/MuflahNasir/mern_stack_development">
+                    <i class="fa fa-github"></i>
+                    &nbsp;GitHub</NavLink>
                     </NavItem>
                 </Nav>
                 </Collapse>

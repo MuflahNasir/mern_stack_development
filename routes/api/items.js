@@ -38,4 +38,10 @@ router.delete("/:id", (req, res) => {
         .catch(err => res.status(404).json({ success: false }))
 })
 
+router.put("/:id", (req, res) => {
+    Item.updateOne({_id: req.params.id}, {$set: {name: req.body.name}})
+        .then((item) => res.json(item))
+        .catch(err => console.log("Couldn't update data", err))
+});
+
 module.exports = router;
