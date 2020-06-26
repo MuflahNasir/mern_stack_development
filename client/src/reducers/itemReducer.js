@@ -34,10 +34,8 @@ export default function(state = initialState, action){
             }
         case UPDATE_ITEM:
             let newStateItem =  state.items.map(
-                (item) => item._id ===  action.payload.id ? {...item, name: action.payload.name}
-                                        : item
+                (item) => item._id ===  action.payload.id ? {...item, name: action.payload.name}: item
             )
-            debugger
             return{
                 ...state,
                 items: newStateItem

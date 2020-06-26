@@ -32,7 +32,6 @@ export const addItem = (name) => dispatch => {
 }
 
 export const updateItem = (id, name) => dispatch => {
-    debugger
     axios
         .put(`api/items/${id}`, {name})
         .then(res => dispatch({
