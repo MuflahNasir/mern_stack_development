@@ -1,6 +1,6 @@
 ## Steps required to run this project
 
-1. Create a config/keys.json in root project (you have to create a config folder for this first)
+1. In config/keys.json in root project
 2. Your keys.json file must be look like this
     module.exports = {
         mongoURI : PASTE YOUR MONGO DB CONNECTION STRING HERE
