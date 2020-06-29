@@ -1,18 +1,20 @@
 const express = require("express")
 const mongoose = require("mongoose")
-const bodyParser = require("body-parser")
 const items = require("./routes/api/items")
+const users = require("./routes/api/Users")
+const auth = require("./routes/api/auth")
 const path = require("path")
+const config = require("config")
 
 const app = express()
 
 //bodyparser middleware
 
-app.use(bodyParser.json())
+app.use(express.json())
 
 // DB config
 
-const db = require("./config/keys").mongoURI;
+const db = config.get("mongoURI");
 
 //connect to mongoDb
 mongoose
@@ -27,6 +29,14 @@ mongoose
 // Use Items
 
 app.use("/api/items", items)
+
+// Use Users
+
+app.use("/api/users", users)
+
+// Use authentication
+
+app.use("/api/auth", auth)
 
 // Serve static assets if in Production
 

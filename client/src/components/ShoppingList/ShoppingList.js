@@ -20,7 +20,6 @@ import {
     TransitionGroup
 } from "react-transition-group"
 
-import "./ShoppingList.css"
 import { connect } from "react-redux"
 import { getItem, deleteItem, addItem, updateItem } from "../../actions/itemAction"
 import ItemModel from "./ItemModel"
@@ -29,7 +28,8 @@ const ShoppingList = (props) => {
 
     const {
         getItem,
-        Items
+        Items,
+        isAuthenticated
     } = props
 
     const [modal, setModal] = useState(false);
@@ -72,19 +72,21 @@ const ShoppingList = (props) => {
                         {props.Items.items.map((item) => (
                             <CSSTransition key={item._id} timeout={500} classNames="fade">
                                 <ListGroupItem>
-                                    <Button
-                                    color="danger"
-                                    className="remove-btn"
-                                    size="sm"
-                                    onClick= {() => onDeleteItem(item._id)}
-                                    ><span role="img" aria-label="delete">&#10008;</span></Button>
+                                    {isAuthenticated? 
+                                        <Button
+                                            color="danger"
+                                            className="remove-btn"
+                                            size="sm"
+                                            onClick={() => onDeleteItem(item._id)}
+                                        ><span role="img" aria-label="delete">&#10008;</span></Button>: null}
                                     {item.name}
-                                    <Button
-                                    color="info"
-                                    className="edit-button"
-                                    size="sm"
-                                    onClick= {() => onEditItem(item)}
-                                    ><span role="img" aria-label="edit">&#9998;</span></Button>
+                                    {isAuthenticated? 
+                                        <Button
+                                            color="info"
+                                            className="edit-button"
+                                            size="sm"
+                                            onClick={() => onEditItem(item)}
+                                        ><span role="img" aria-label="edit">&#9998;</span></Button>: null}
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}
@@ -112,7 +114,8 @@ const ShoppingList = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    Items: state.item
+    Items: state.item,
+    isAuthenticated: state.auth.isAuthenticated
 })
 
 export default connect(mapStateToProps, { getItem, deleteItem, addItem, updateItem })(ShoppingList)
